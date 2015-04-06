@@ -8,7 +8,6 @@ settings:
     bootstrap: _bootstrap.php
     colors: false
     memory_limit: 1024M
-    environment_file: .env.test
 modules:
     config:
         Db:
@@ -16,3 +15,5 @@ modules:
             user: ''
             password: ''
             dump: tests/_data/dump.sql
+        Laravel5:
+            environment_file: .env.test
