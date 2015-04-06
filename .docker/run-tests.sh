@@ -7,4 +7,4 @@ composer install
 mysql -u root -e "CREATE DATABASE task_manager CHARACTER SET utf8;"
 php artisan migrate
 php artisan db:seed
-vendor/bin/codecept run
+vendor/bin/codecept run --debug
