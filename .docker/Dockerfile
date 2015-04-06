@@ -20,4 +20,6 @@ RUN yum install -y --enablerepo=remi --enablerepo=remi-php56 php php-pdo php-mys
 RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
 
+ADD env /opt/ci-test/.env
+
 CMD ["/bin/bash"]
