@@ -15,6 +15,8 @@ RUN rpm -Uvh http://dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm
 RUN yum install -y mysql-community-server
 ADD my.cnf /etc/my.cnf 
 
+RUN yum install -y --enablerepo=remi --enablerepo=remi-php56 php php-pdo php-mysql php-mbstring php-mcrypt
+
 RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
 
