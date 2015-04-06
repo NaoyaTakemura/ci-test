@@ -1,5 +1,7 @@
 #!/bin/bash
 
+service mysqld start
+
 cd /opt/ci-test
 composer install
 php artisan migrate
