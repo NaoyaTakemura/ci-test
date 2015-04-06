@@ -1,0 +1,1 @@
+CREATE DATABASE `task_manager` DEFAULT CHARACTER SET utf8;

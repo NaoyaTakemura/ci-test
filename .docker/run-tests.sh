@@ -4,7 +4,5 @@ service mysqld start
 
 cd /opt/ci-test
 composer install
-#mysql -u root -e "CREATE DATABASE task_manager CHARACTER SET utf8;"
-#php artisan migrate
-#php artisan db:seed
+mysql -u root < ./.docker/setup.sql
 vendor/bin/codecept run
