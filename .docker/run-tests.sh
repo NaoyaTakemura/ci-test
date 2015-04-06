@@ -3,7 +3,7 @@
 service mysqld start
 
 cd /opt/ci-test
-cp .docker/env .env
+#cp .docker/env .env
 composer install
 mysql -u root -e "CREATE DATABASE task_manager CHARACTER SET utf8;"
 php artisan migrate
