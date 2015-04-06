@@ -10,6 +10,7 @@ modules:
         - PhpBrowser
         - AcceptanceHelper
         - Laravel5
+        - Db
     config:
         PhpBrowser:
             url: 'http://localhost/myapp/'
