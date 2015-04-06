@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2015 年 4 ?E06 日 09:54
+-- Generation Time: 2015 年 4 ?E06 日 09:59
 -- サーバのバージョン： 5.6.20
 -- PHP Version: 5.5.15
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `task_manager`
 --
+CREATE DATABASE IF NOT EXISTS `task_manager` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `task_manager`;
 
 -- --------------------------------------------------------
 
