@@ -8,6 +8,7 @@ settings:
     bootstrap: _bootstrap.php
     colors: false
     memory_limit: 1024M
+    environment_file: .env.test
 modules:
     config:
         Db:
