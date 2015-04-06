@@ -11,9 +11,8 @@ settings:
 modules:
     config:
         Db:
-            dsn: ''
-            user: ''
+            dsn: 'mysql:host=localhost;task_manager;charset=utf8;'
+            user: 'root'
             password: ''
             dump: tests/_data/dump.sql
-        Laravel5:
-            environment_file: .env.test
+        

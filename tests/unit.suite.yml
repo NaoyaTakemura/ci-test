@@ -4,3 +4,6 @@
 class_name: UnitTester
 modules:
     enabled: [Asserts, UnitHelper]
+    config:
+        Laravel5:
+            environment_file: .env.test
