@@ -11,7 +11,7 @@ settings:
 modules:
     config:
         Db:
-            dsn: 'mysql:host=localhost;charset=utf8;'
+            dsn: 'mysql:host=localhost;dbname=task_manager;charset=utf8;'
             user: 'root'
             password: ''
             dump: tests/_data/dump.sql
