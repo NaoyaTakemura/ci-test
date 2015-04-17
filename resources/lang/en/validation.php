@@ -79,6 +79,8 @@ return [
 	 */
 	"jp_zip_code"          =>":attributeには正しい郵便番号を入力してください。",
 	"project_duplication"  =>"既に登録されています。",
+	"company_duplication"  =>"既に登録されています。",
+	"task_priority_duplication"  =>"既に登録されています。",
 	
 	/*
 	|--------------------------------------------------------------------------

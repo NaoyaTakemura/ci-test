@@ -4,9 +4,8 @@ use App\CompanyMaster;
 use App\ProjectMaster;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
-
+use Utility;
 use Debugbar;
 
 class ProjectMastersController extends Controller {
@@ -28,6 +27,9 @@ class ProjectMastersController extends Controller {
     {
         $this->projectMaster = $projectMaster;
 		$this->companyMaster = $companyMaster;
+		
+		//CSRF対策は自動でやってくれるようだ
+
     }
 	
 	/**
@@ -146,7 +148,7 @@ class ProjectMastersController extends Controller {
 			\Session::put('pcRegist', $saved->id);
 			
 			return redirect()->route("projectMasters/show", $saved->id);
-		}	
+		}
 	}
 
 	/**
@@ -180,7 +182,7 @@ class ProjectMastersController extends Controller {
 		
 		$companies = $this->companyMaster->getCompanyList();
 
-		array_walk_recursive($companies, function(&$item, $key){ $item = htmlspecialchars($item, ENT_QUOTES); });
+		Utility::reflexiveEscape($companies);
 		return view('projectMaster.editInput')->with(compact('companies', 'project'));
 	}
 
@@ -229,7 +231,7 @@ class ProjectMastersController extends Controller {
 			
 			return redirect()->route("projectMasters/show", $id);
 
-		}	
+		}
 	}
 
 	/**
@@ -259,11 +261,9 @@ class ProjectMastersController extends Controller {
 			$id = \Session::get('pdId');
 			
 			//登録処理
-			$project = $this->projectMaster->getProject($id);
-			$project->fill(array(
-				'delete_flag' => 1
-			));
-			$project->save();
+			if($project = $this->projectMaster->deleteProject($id) === false){
+				abort(500);
+			}
 			\Session::forget('pdId');
 			
 			//登録完了メッセージ表示用パラメータ
@@ -282,7 +282,7 @@ class ProjectMastersController extends Controller {
 	private function _renderCreateInput($data = null)
 	{
 		$companies = $this->companyMaster->getCompanyList();
-		array_walk_recursive($companies, function(&$item, $key){ $item = htmlspecialchars($item, ENT_QUOTES); });
+		Utility::reflexiveEscape($companies);
 		return view('projectMaster.createInput')->with(compact('companies', 'data'));
 	}
 

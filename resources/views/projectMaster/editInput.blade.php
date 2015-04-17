@@ -12,12 +12,12 @@
 							</tr>
 							<tr>
 								<th>プロジェクト名</th>
-								<td>{!! $errors->first('name', '<p>:message</p>') !!}<input type='text' name='name' value='{{ $project->name }}' /></td>
+								<td>{!! $errors->first('name', '<p>:message</p>') !!}<input type='text' name='name' class='w60p' value='{{ $project->name }}' /></td>
 							</tr>
 						</tbody>
 					</table>
-					{!! Form::submit('確認画面へ') !!}
-					{!! HTML::linkRoute('projectMasters/index', '一覧画面へ', [], ['title'=>'一覧画面へ']) !!}
+					{!! Form::submit('確認画面へ', ['class' => 'btn btn-primary']) !!}
+					{!! HTML::linkRoute('projectMasters/index', '一覧画面へ', [], ['title'=>'一覧画面へ', 'class'=>'btn btn-default']) !!}
 					{!! Form::close() !!}
       @endsection
 

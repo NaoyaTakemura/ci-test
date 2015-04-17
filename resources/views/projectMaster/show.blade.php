@@ -19,6 +19,6 @@
 							</tr>
 						</tbody>
 					</table>
-					{!! HTML::linkRoute('projectMasters/index', '一覧画面へ', [], ['title'=>'一覧画面へ']) !!}
+					{!! HTML::linkRoute('projectMasters/index', '一覧画面へ', [], ['title'=>'一覧画面へ', 'class'=>'btn btn-default']) !!}
       @endsection
 

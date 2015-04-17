@@ -1,6 +1,8 @@
 <?php namespace App\Extensions\Validates;
 
 use App\ProjectMaster;
+use App\CompanyMaster;
+use App\Task;
 
 class CustomValidator extends \Illuminate\Validation\Validator
 {
@@ -34,6 +36,43 @@ class CustomValidator extends \Illuminate\Validation\Validator
 		$pm = new ProjectMaster();
 		
 		return is_null($pm->getDuplicationProject($data));
+	}
+	
+	/**
+	 * 登録済み企業との重複チェック
+	 */
+	public function validateCompanyDuplication($attribute, $value, $parameters)
+	{
+		$this->resolveDbInstance();
+		
+		//更新の場合は選択中のプロジェクトをチェック対象から除外
+		$data['company_id'] = 0;
+		if(\Session::has('ceId')){
+			$data['company_id'] = \Session::get('ceId');
+		}
+
+		$data['name'] = $this->getValue('name');
+		$cm = new CompanyMaster();
+		
+		return is_null($cm->getDuplicationCompany($data));
+	}
+	
+	/**
+	 * タスクのプライオリティ重複チェック
+	 */
+	public function validateTaskPriorityDuplication($attribute, $value, $parameters)
+	{
+		$this->resolveDbInstance();
+		
+		$data['priority'] = $this->getValue('priority');
+		$data['company_id'] = 0;
+		if(\Session::has('teId')){
+			$data['id'] = \Session::get('teId');
+		}
+		
+		$t = new Task();
+		
+		return is_null($t->getDuplicationPriority($data));
 	}
 	
 	/**

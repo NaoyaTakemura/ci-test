@@ -15,8 +15,8 @@
 							</tr>
 						</tbody>
 					</table>
-					{!! Form::submit('登録') !!}
-					{!! HTML::linkRoute('projectMasters/createInput', '修正する', [], ['title'=>'修正する']) !!}
+					{!! Form::submit('登録', ['class' => 'btn btn-primary']) !!}
+					{!! HTML::linkRoute('projectMasters/createInput', '修正する', [], ['title'=>'修正する', 'class' => 'btn btn-warning']) !!}
 					{!! Form::close() !!}
       @endsection
 

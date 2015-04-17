@@ -2,16 +2,16 @@
 
 use App\Http\Requests\Request;
 
-class CreateProjectRequest extends Request {
+class CreateTaskRequest extends Request {
 
 	public function __construct()
 	{
 		//リダイレクト先の指定 正しい遷移をしなかった場合のリダイレクト先の設定。
 		//コントローラー側よりも先にバリデーションが走るため、前ページリダイレクトされてしまう。
 		//デバッグバーをONにしてあると、リダイレクト先にjsやcssが指定されることがある。
-		if(\Request::server('HTTP_REFERER') != route("projectMasters/createInput") &&
-			\Request::server('HTTP_REFERER') != route("projectMasters/editInput", \Session::get('peId'))){
-			$this->redirect = route("projectMasters/index");
+		if(\Request::server('HTTP_REFERER') != route("tasks/createInput") &&
+			\Request::server('HTTP_REFERER') != route("tasks/editInput", \Session::get('teId'))){
+			$this->redirect = route("tasks/index");
 		}
 	}
 	
@@ -34,20 +34,13 @@ class CreateProjectRequest extends Request {
 	{
 		return [
 			'company_id'=>'required|integer',
-			'name'=>'required|between:1,50|projectDuplication'
+			'project_id'=>'required|integer',
+			'title'=>'required|between:1,100',
+			'text'=>'between:0,3000',
+			'priority'=>'integer|taskPriorityDuplication',
+			'limit'=>'required|date_format:"Y-m-d G:i"',
+			'progress'=>'integer|between:0,100',
 		];
 	}
-	
-	/**
-	 * カスタムバリデーションエラーメッセージ定義
-	 * 言語ファイル（resources/lang/{言語}/validation.php）に定義するが、ここでも以下のように定義可能
-	 * @return type
-	 */
-	/*public function messages()
-    {
-        return [
-            'name.jp_zip_code' => ':attributeを正しく入力してね'
-        ];
-    }*/
 
 }

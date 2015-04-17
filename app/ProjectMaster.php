@@ -32,7 +32,9 @@ class ProjectMaster extends Model {
 	 */
 	public function getProjects()
 	{
-		return $this->with('companyMasters')->where('delete_flag', 0)->get();
+		return $this->with('companyMasters')
+			->where('delete_flag', 0)
+			->get();
 	}
 	
 	/**
@@ -106,5 +108,34 @@ class ProjectMaster extends Model {
 			'name'       => $data['name']
 		));
 		return $project->save();
+	}
+	
+	/**
+	 * プロジェクトの削除
+	 */
+	public function deleteProject($id)
+	{
+		$project = $this->getProject($id);
+		$project->fill(array(
+			'delete_flag' => 1
+		));
+		return $project->save();
+	}
+	
+	/**
+	 * プロジェクトリストの取得
+	 */
+	public function getProjectListByCompany($company_id)
+	{
+		return $this->where('company_id', $company_id)
+			->lists('name', 'id');
+	}
+	
+	/**
+	 * プロジェクト名の取得
+	 */
+	public function getProjectName($id)
+	{
+		return $this->where('id', $id)->pluck('name');
 	}
 }

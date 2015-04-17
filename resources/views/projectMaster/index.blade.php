@@ -4,7 +4,7 @@
 					<h2 class="page-header">プロジェクト一覧</h2>
 					{!! $deleted !!}
 					<div>
-						{!! HTML::linkRoute('projectMasters/createInput', '新規登録', [], ['title'=>'新規登録']) !!}
+						{!! HTML::linkRoute('projectMasters/createInput', '新規登録', [], ['title'=>'新規登録', 'class' => 'btn btn-primary']) !!}
 					</div>
 					@if(count($projects) > 0)
 					<table class="table table-striped table-hover" id="project-list">

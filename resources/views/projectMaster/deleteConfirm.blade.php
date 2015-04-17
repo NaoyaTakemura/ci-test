@@ -18,7 +18,7 @@
 							</tr>
 						</tbody>
 					</table>
-					{!! HTML::linkRoute('projectMasters/delete', '削除', [], ['title'=>'削除']) !!}
-					{!! HTML::linkRoute('projectMasters/index', '一覧画面へ', [], ['title'=>'一覧画面へ']) !!}
+					{!! HTML::linkRoute('projectMasters/delete', '削除', [], ['title'=>'削除', 'class'=>'btn btn-danger']) !!}
+					{!! HTML::linkRoute('projectMasters/index', '一覧画面へ', [], ['title'=>'一覧画面へ', 'class'=>'btn btn-default']) !!}
       @endsection
 

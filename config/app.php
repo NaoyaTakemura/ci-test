@@ -146,7 +146,11 @@ return [
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
 		'App\Providers\ValidatorServiceProvider',
+		'App\Providers\UtilityServiceProvider',
 		
+		/*
+		 * for Debugber
+		 */
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
         'Barryvdh\Debugbar\ServiceProvider',
 
@@ -197,9 +201,10 @@ return [
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
-		'Form' => 'Illuminate\Html\FormFacade',
-		'HTML' => 'Illuminate\Html\HtmlFacade', 
-        'Debugbar' => 'Barryvdh\Debugbar\Facade',
+		'Form'      => 'Illuminate\Html\FormFacade',
+		'HTML'      => 'Illuminate\Html\HtmlFacade', 
+        'Debugbar'  => 'Barryvdh\Debugbar\Facade',
+		'Utility'   => 'App\Facade\Utility',
 
 	],
 
