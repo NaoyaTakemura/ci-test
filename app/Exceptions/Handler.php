@@ -36,6 +36,12 @@ class Handler extends ExceptionHandler {
 	 */
 	public function render($request, Exception $e)
 	{
+		//エラー画面にメッセージを表示するには以下のようにexceptionを補足してresponseを返す必要あり。
+		//parent::renderではテンプレートにメッセージをセットしない。
+		if ($e instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException){
+			$error = $e->getMessage();
+			return response(view('errors.404')->with(compact('error')), 404);
+		}
 		return parent::render($request, $e);
 	}
 

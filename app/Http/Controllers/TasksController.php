@@ -63,7 +63,7 @@ class TasksController extends Controller {
 	{
 		$task = $this->task->getTask($id);
 		if(empty($task)){ 
-			abort(404);
+			abort(404, \Lang::get('message.taskNotFound'));
 		}
 		
 		//登録完了時のメッセージ作成
@@ -183,7 +183,7 @@ class TasksController extends Controller {
 			//フォームデータがなければDBから取得
 			$data = $this->task->getTask($id);
 			if(empty($data)){ 
-				abort(404);
+				abort(404, \Lang::get('message.taskNotFound'));
 			}
 			\Session::forget('tcFormData');
 		} else {
@@ -270,7 +270,7 @@ class TasksController extends Controller {
 		\Session::put('tdId', $id);
 		$task = $this->task->getTask($id);
 		if(empty($task)){ 
-			abort(404);
+			abort(404, \Lang::get('message.taskNotFound'));
 		}
 		
 		$data = $task->toArray();

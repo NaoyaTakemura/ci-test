@@ -12,8 +12,8 @@
 							<tr>
 								<th width="5%">ID</th>
 								<th width="10%">企業名</th>
-								<th width="20%">プロジェクト名</th>
-								<th width="35%">タスク</th>
+								<th width="15%">プロジェクト名</th>
+								<th width="40%">タスク</th>
 								<th width="10%">プライオリティ</th>
 								<th width="10%">期限</th>
 								<th width="5%">編集</th>

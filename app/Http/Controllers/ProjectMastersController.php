@@ -58,7 +58,7 @@ class ProjectMastersController extends Controller {
 	{
 		$project = $this->projectMaster->getProject($id);
 		if(empty($project)){ 
-			abort(404);
+			abort(404, \Lang::get('message.projectNotFound'));
 		}
 		
 		//登録完了時のメッセージ作成
@@ -171,7 +171,7 @@ class ProjectMastersController extends Controller {
 			//フォームデータがなければDBから取得
 			$project = $this->projectMaster->getProject($id);
 			if(empty($project)){ 
-				abort(404);
+				abort(404, \Lang::get('message.projectNotFound'));
 			}
 			\Session::forget('pcFormData');
 		} else {
@@ -244,6 +244,10 @@ class ProjectMastersController extends Controller {
 	{
 		\Session::put('pdId', $id);
 		$project = $this->projectMaster->getProject($id);
+		if(empty($project)){ 
+			abort(404, \Lang::get('message.projectNotFound'));
+		}
+		
 		return view('projectMaster.deleteConfirm')->with(compact('project'));
 	}
 	

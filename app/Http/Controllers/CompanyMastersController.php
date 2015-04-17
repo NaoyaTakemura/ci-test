@@ -46,7 +46,7 @@ class CompanyMastersController extends Controller {
 	{
 		$company = $this->companyMaster->getCompany($id);
 		if(empty($company)){ 
-			abort(404);
+			abort(404, \Lang::get('message.companyNotFound'));
 		}
 		
 		//登録完了時のメッセージ作成
@@ -157,7 +157,7 @@ class CompanyMastersController extends Controller {
 			//フォームデータがなければDBから取得
 			$company = $this->companyMaster->getCompany($id);
 			if(empty($company)){ 
-				abort(404);
+				abort(404, \Lang::get('message.companyNotFound'));
 			}
 			\Session::forget('ccFormData');
 		} else {
@@ -228,6 +228,10 @@ class CompanyMastersController extends Controller {
 	{
 		\Session::put('cdId', $id);
 		$company = $this->companyMaster->getCompany($id);
+		if(empty($company)){ 
+			abort(404, \Lang::get('message.companyNotFound'));
+		}
+			
 		return view('companyMaster.deleteConfirm')->with(compact('company'));
 	}
 	

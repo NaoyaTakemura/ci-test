@@ -35,6 +35,7 @@
 		<div class="container">
 			<div class="content">
 				<div class="title">Not Found</div>
+				<div>{{ $error }}</div>
 			</div>
 		</div>
 	</body>
