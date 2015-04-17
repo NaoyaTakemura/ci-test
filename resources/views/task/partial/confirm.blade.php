@@ -18,7 +18,7 @@
 							</tr>
 							<tr>
 								<th>プライオリティ</th>
-								<td>{{ $data['priority'] }}</td>
+								<td>{!! nl2br(e($data['priority'])) !!}</td>
 							</tr>
 							<tr>
 								<th>期限</th>

@@ -23,7 +23,7 @@
 							</tr>
 							<tr>
 								<th>内容</th>
-								<td>{{ $task->text }}</td>
+								<td>{!! nl2br(e($task->text)) !!}</td>
 							</tr>
 							<tr>
 								<th>プライオリティ</th>
