@@ -46,6 +46,10 @@ class Task extends Model {
 	 */
 	public function getDuplicationPriority($data)
 	{
+		if(isset($data['id']) !== false){
+			$data['id'] = 0;
+		}
+		
 		$ret = null;
 		if($data['priority'] != 999){
 			$task = $this->select('id')
