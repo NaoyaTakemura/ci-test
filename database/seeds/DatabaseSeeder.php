@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder {
 
 		$this->call('CompanyMasterTableSeeder');
 		$this->call('ProjectMasterTableSeeder');
+		$this->call('TaskTableSeeder');
 		
 		DB::statement('SET FOREIGN_KEY_CHECKS = 1');
 	}

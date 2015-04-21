@@ -39,6 +39,7 @@
 							</tr>
 						</tbody>
 					</table>
+					{!! HTML::linkRoute('tasks/editInput', '編集画面へ', [$task->id], ['title'=>'編集画面へ', 'class'=>'btn btn-warning']) !!}
 					{!! HTML::linkRoute('tasks/index', '一覧画面へ', [], ['title'=>'一覧画面へ', 'class'=>'btn btn-default']) !!}
       @endsection
 

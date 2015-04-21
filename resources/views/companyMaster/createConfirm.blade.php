@@ -6,7 +6,6 @@
 					<table class="table table-striped table-hover" id='company-create'>
 						<tbody>
 							<tr>
-							<tr>
 								<th>プロジェクト名</th>
 								<td>{{ $data['name'] }}</td>
 							</tr>

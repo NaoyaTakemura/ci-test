@@ -19,8 +19,9 @@ class CreateTasksTable extends Migration {
 			$table->string('title');
 			$table->text('text');
 			$table->timestamp('limit');
+			$table->integer('priority');
 			$table->string('progress');
-			$table->char('delete', 1)->default(0);
+			$table->char('delete_flag', 1)->default(0);
 			
 		});
 		Schema::table('tasks', function(Blueprint $table)

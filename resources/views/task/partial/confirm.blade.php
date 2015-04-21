@@ -14,11 +14,11 @@
 							</tr>
 							<tr>
 								<th>内容</th>
-								<td>{{ $data['text'] }}</td>
+								<td>{!! nl2br(e( $data['text'])) !!}</td>
 							</tr>
 							<tr>
 								<th>プライオリティ</th>
-								<td>{!! nl2br(e($data['priority'])) !!}</td>
+								<td>{{ $data['priority'] }}</td>
 							</tr>
 							<tr>
 								<th>期限</th>
