@@ -1,7 +1,7 @@
     @extends('app')
       
       @section('content')
-					<h2 class="page-header">プロジェクト削除確認</h2>
+					<h2 class="page-header"><small>プロジェクト削除確認</small></h2>
 					<table class="table table-striped table-hover" id='project-detail'>
 						<thead>
 							<tr>

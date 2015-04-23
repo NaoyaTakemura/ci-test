@@ -276,6 +276,25 @@ class ProjectMastersController extends Controller {
 			return redirect()->route("projectMasters/index");
 		}
 	}
+		
+	/**
+	 * ajax用プロジェクトリスト取得
+	 */
+	public function getProjectList(Request $request)
+	{
+		$id = $request->id;
+		$list = array();
+		if(is_null($id) === false){
+			$tmp = $this->projectMaster->getProjectListByCompany($id);
+			foreach($tmp as $key => $val){
+				$arr['id'] = $key;
+				$arr['name'] = $val;
+				$list[] = $arr;
+			}
+		}
+		
+		return \Response::json($list);
+	}
 	
 	/**
 	 * 新規登録 入力画面render処理

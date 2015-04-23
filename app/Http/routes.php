@@ -41,6 +41,7 @@ Route::get('projectMasters/deleteConfirm/{id}', ['as'=>'projectMasters/deleteCon
 Route::post('projectMasters/deleteConfirm/{id}', ['as'=>'projectMasters/deleteConfirm', 'uses'=>'ProjectMastersController@deleteConfirm'])->where('id', '[0-9]+');
 Route::get('projectMasters/delete', ['as'=>'projectMasters/delete', 'uses'=>'ProjectMastersController@delete'])->where('id', '[0-9]+');
 Route::post('projectMasters/delete', ['as'=>'projectMasters/delete', 'uses'=>'ProjectMastersController@delete'])->where('id', '[0-9]+');
+Route::post('projectMasters/getProjectList', ['as'=>'projectMasters/getProjectList', 'uses'=>'ProjectMastersController@getProjectList']);
 
 /* companyMasters */
 Route::get('companyMasters', ['as'=>'companyMasters/index', 'uses'=>'CompanyMastersController@index']);
@@ -85,8 +86,50 @@ Route::get('tasks/deleteConfirm/{id}', ['as'=>'tasks/deleteConfirm', 'uses'=>'ta
 Route::post('tasks/deleteConfirm/{id}', ['as'=>'tasks/deleteConfirm', 'uses'=>'tasksController@deleteConfirm'])->where('id', '[0-9]+');
 Route::get('tasks/delete', ['as'=>'tasks/delete', 'uses'=>'tasksController@delete'])->where('id', '[0-9]+');
 Route::post('tasks/delete', ['as'=>'tasks/delete', 'uses'=>'tasksController@delete'])->where('id', '[0-9]+');
-Route::post('tasks/getProjectList', ['as'=>'tasks/getProjectList', 'uses'=>'tasksController@getProjectList']);
 
+/* holders */
+Route::get('holders', ['as'=>'holders/index', 'uses'=>'HoldersController@index']);
+Route::post('holders', ['as'=>'holders/index', 'uses'=>'HoldersController@index']);
+Route::get('holders/show/{id}', ['as'=>'holders/show', 'uses'=>'HoldersController@show'])->where('id', '[0-9]+');
+Route::post('holders/show/{id}', ['as'=>'holders/show', 'uses'=>'HoldersController@show'])->where('id', '[0-9]+');
+Route::get('holders/createInput', ['as'=>'holders/createInput', 'uses'=>'HoldersController@createInput']);
+Route::post('holders/createInput', ['as'=>'holders/createInput', 'uses'=>'HoldersController@createInput']);
+Route::get('holders/createConfirm', ['as'=>'holders/createConfirm', 'uses'=>'HoldersController@createConfirm']);
+Route::post('holders/createConfirm', ['as'=>'holders/createConfirm', 'uses'=>'HoldersController@createConfirm']);
+Route::get('holders/createRegist', ['as'=>'holders/createRegist', 'uses'=>'HoldersController@createRegist']);
+Route::post('holders/createRegist', ['as'=>'holders/createRegist', 'uses'=>'HoldersController@createRegist']);
+Route::get('holders/editInput/{id}', ['as'=>'holders/editInput', 'uses'=>'HoldersController@editInput'])->where('id', '[0-9]+');
+Route::post('holders/editInput/{id}', ['as'=>'holders/editInput', 'uses'=>'HoldersController@editInput'])->where('id', '[0-9]+');
+Route::get('holders/editConfirm', ['as'=>'holders/editConfirm', 'uses'=>'HoldersController@editConfirm']);
+Route::post('holders/editConfirm', ['as'=>'holders/editConfirm', 'uses'=>'HoldersController@editConfirm']);
+Route::get('holders/editRegist', ['as'=>'holders/editRegist', 'uses'=>'HoldersController@editRegist']);
+Route::post('holders/editRegist', ['as'=>'holders/editRegist', 'uses'=>'HoldersController@editRegist']);
+Route::get('holders/deleteConfirm/{id}', ['as'=>'holders/deleteConfirm', 'uses'=>'HoldersController@deleteConfirm'])->where('id', '[0-9]+');
+Route::post('holders/deleteConfirm/{id}', ['as'=>'holders/deleteConfirm', 'uses'=>'HoldersController@deleteConfirm'])->where('id', '[0-9]+');
+Route::get('holders/delete', ['as'=>'holders/delete', 'uses'=>'HoldersController@delete'])->where('id', '[0-9]+');
+Route::post('holders/delete', ['as'=>'holders/delete', 'uses'=>'HoldersController@delete'])->where('id', '[0-9]+');
+Route::post('holders/getHolderList', ['as'=>'holders/getHolderList', 'uses'=>'HoldersController@getHolderList']);
+/* companyMasters */
+Route::get('companyMasters', ['as'=>'companyMasters/index', 'uses'=>'CompanyMastersController@index']);
+Route::post('companyMasters', ['as'=>'companyMasters/index', 'uses'=>'CompanyMastersController@index']);
+Route::get('companyMasters/show/{id}', ['as'=>'companyMasters/show', 'uses'=>'CompanyMastersController@show'])->where('id', '[0-9]+');
+Route::post('companyMasters/show/{id}', ['as'=>'companyMasters/show', 'uses'=>'CompanyMastersController@show'])->where('id', '[0-9]+');
+Route::get('companyMasters/createInput', ['as'=>'companyMasters/createInput', 'uses'=>'CompanyMastersController@createInput']);
+Route::post('companyMasters/createInput', ['as'=>'companyMasters/createInput', 'uses'=>'CompanyMastersController@createInput']);
+Route::get('companyMasters/createConfirm', ['as'=>'companyMasters/createConfirm', 'uses'=>'CompanyMastersController@createConfirm']);
+Route::post('companyMasters/createConfirm', ['as'=>'companyMasters/createConfirm', 'uses'=>'CompanyMastersController@createConfirm']);
+Route::get('companyMasters/createRegist', ['as'=>'companyMasters/createRegist', 'uses'=>'CompanyMastersController@createRegist']);
+Route::post('companyMasters/createRegist', ['as'=>'companyMasters/createRegist', 'uses'=>'CompanyMastersController@createRegist']);
+Route::get('companyMasters/editInput/{id}', ['as'=>'companyMasters/editInput', 'uses'=>'CompanyMastersController@editInput'])->where('id', '[0-9]+');
+Route::post('companyMasters/editInput/{id}', ['as'=>'companyMasters/editInput', 'uses'=>'CompanyMastersController@editInput'])->where('id', '[0-9]+');
+Route::get('companyMasters/editConfirm', ['as'=>'companyMasters/editConfirm', 'uses'=>'CompanyMastersController@editConfirm']);
+Route::post('companyMasters/editConfirm', ['as'=>'companyMasters/editConfirm', 'uses'=>'CompanyMastersController@editConfirm']);
+Route::get('companyMasters/editRegist', ['as'=>'companyMasters/editRegist', 'uses'=>'CompanyMastersController@editRegist']);
+Route::post('companyMasters/editRegist', ['as'=>'companyMasters/editRegist', 'uses'=>'CompanyMastersController@editRegist']);
+Route::get('companyMasters/deleteConfirm/{id}', ['as'=>'companyMasters/deleteConfirm', 'uses'=>'CompanyMastersController@deleteConfirm'])->where('id', '[0-9]+');
+Route::post('companyMasters/deleteConfirm/{id}', ['as'=>'companyMasters/deleteConfirm', 'uses'=>'CompanyMastersController@deleteConfirm'])->where('id', '[0-9]+');
+Route::get('companyMasters/delete', ['as'=>'companyMasters/delete', 'uses'=>'CompanyMastersController@delete'])->where('id', '[0-9]+');
+Route::post('companyMasters/delete', ['as'=>'companyMasters/delete', 'uses'=>'CompanyMastersController@delete'])->where('id', '[0-9]+');
 
 
 Route::get('tasks', 'TasksController@index');

@@ -3,6 +3,7 @@
 use App\ProjectMaster;
 use App\CompanyMaster;
 use App\Task;
+use App\Holder;
 
 class CustomValidator extends \Illuminate\Validation\Validator
 {
@@ -75,6 +76,26 @@ class CustomValidator extends \Illuminate\Validation\Validator
 		return is_null($t->getDuplicationPriority($data));
 	}
 	
+	/**
+	 * 登録済み担当者との重複チェック
+	 */
+	public function validateHolderDuplication($attribute, $value, $parameters)
+	{
+		$this->resolveDbInstance();
+		
+		//更新の場合は選択中のプロジェクトをチェック対象から除外
+		$data['holder_id'] = 0;
+		if(\Session::has('heId')){
+			$data['holder_id'] = \Session::get('heId');
+		}
+
+		$data['company_id'] = $this->getValue('company_id');
+		$data['name'] = $this->getValue('name');
+		$h = new Holder();
+		
+		return is_null($h->getDuplicationHolder($data));
+	}
+
 	/**
 	 * Model利用手続き
 	 * DBのインスタンス生成がシングルトンになっているので複数回呼んでも大丈夫

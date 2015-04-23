@@ -1,18 +1,18 @@
     @extends('app')
       
       @section('content')
-					<h2 class="page-header">プロジェクト編集</h2>
+					<h2 class="page-header"><small>プロジェクト編集</small></h2>
 
 					{!! Form::open(array('route' => 'projectMasters/editConfirm')) !!}
 					<table class="table table-striped table-hover">
 						<tbody>
 							<tr>
 								<th>企業名</th>
-								<td>{!! $errors->first('company_id', '<p>:message</p>') !!}{!! Form::select('company_id', $companies, $project->company_id) !!}</td>
+								<td>{!! $errors->first('company_id', '<p class="text-danger">:message</p>') !!}{!! Form::select('company_id', $companies, $project->company_id) !!}</td>
 							</tr>
 							<tr>
 								<th>プロジェクト名</th>
-								<td>{!! $errors->first('name', '<p>:message</p>') !!}<input type='text' name='name' class='w60p' value='{{ $project->name }}' /></td>
+								<td>{!! $errors->first('name', '<p class="text-danger">:message</p>') !!}<input type='text' name='name' class='w60p' value='{{ $project->name }}' /></td>
 							</tr>
 						</tbody>
 					</table>

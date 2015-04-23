@@ -1,7 +1,7 @@
     @extends('app')
       
       @section('content')
-					<h2 class="page-header">{{ $company->name }}</h2>
+					<h2 class="page-header"><small>{{ $company->name }}</small></h2>
 					{!! $registed !!}
 					<table class="table table-striped table-hover" id="company_table">
 						<thead>

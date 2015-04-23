@@ -19,6 +19,15 @@ class CompanyMaster extends Model {
 	public $timestamps=false;
 	
 	/**
+	 * 担当者との1対多
+	 * @return type
+	 */
+	/*public function holders()
+	{
+		return $this->hasMany('App\Holder', 'company_id', 'id');
+	}*/
+	
+	/**
 	 * 企業一覧の取得
 	 */
 	public function getCompanies()

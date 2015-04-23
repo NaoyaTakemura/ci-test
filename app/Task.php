@@ -23,13 +23,22 @@ class Task extends Model {
 	}
 	
 	/**
+	 * 担当者との1対1
+	 * @return type
+	 */
+	public function holders()
+	{
+		return $this->hasOne('App\holder', 'id', 'holder_id');
+	}
+	
+	/**
 	 * 日付自動更新の設定解除
 	 */
 	public $timestamps=false;
 	
 	public function getTasks()
 	{
-		return $this->with('projectMasters', 'projectMasters.companyMasters')
+		return $this->with('projectMasters', 'projectMasters.companyMasters', 'holders')
 			->where('delete_flag', 0)
 			->orderBy('priority', 'asc')
 			->orderBy('limit', 'asc')
@@ -39,6 +48,20 @@ class Task extends Model {
 	public function getTask($id)
 	{
 		return $this->find($id);
+	}
+	
+	public function getTaskWithHolder($id)
+	{
+		$task = $this->with('holders')
+			->where('id', $id)
+			->get();
+		
+		$ret = null;
+		if(count($task) > 0){
+			$ret = $task[0];
+		}
+		
+		return $ret;
 	}
 	
 	/**
@@ -73,11 +96,12 @@ class Task extends Model {
 	{
 		$this->fill(array(
 				'project_id' => $data['project_id'],
-				'title'       => $data['title'],
+				'title'      => $data['title'],
 				'text'       => $data['text'],
-				'limit'       => $data['limit'],
-				'priority'       => $data['priority'],
-				'progress'       => $data['progress'],
+				'limit'      => $data['limit'],
+				'holder_id'  => $data['holder_id'],
+				'priority'   => $data['priority'],
+				'progress'   => $data['progress'],
 			));
 		return $this->save();
 	}
@@ -109,11 +133,12 @@ class Task extends Model {
 		$task = $this->getTask($id);
 		$task->fill(array(
 				'project_id' => $data['project_id'],
-				'title'       => $data['title'],
+				'title'      => $data['title'],
 				'text'       => $data['text'],
-				'limit'       => $data['limit'],
-				'priority'       => $data['priority'],
-				'progress'       => $data['progress'],
+				'limit'      => $data['limit'],
+				'holder_id'     => $data['holder_id'],
+				'priority'   => $data['priority'],
+				'progress'   => $data['progress'],
 		));
 		return $task->save();
 	}

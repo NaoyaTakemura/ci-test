@@ -1,7 +1,7 @@
     @extends('app')
       
       @section('content')
-					<h2 class="page-header">プロジェクト編集</h2>
+					<h2 class="page-header"><small>プロジェクト編集</small></h2>
 					{!! Form::open(array('route' => array('companyMasters/editRegist'))) !!}
 					<table class="table table-striped table-hover">
 						<tbody>

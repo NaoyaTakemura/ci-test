@@ -17,6 +17,7 @@
 					<li>{!! HTML::linkRoute('tasks/index', 'タスク管理', [], ['title'=>'タスク管理']) !!}</li>
 					<li>{!! HTML::linkRoute('projectMasters/index', 'プロジェクト管理', [], ['title'=>'プロジェクト管理']) !!}</li>
 					<li>{!! HTML::linkRoute('companyMasters/index', '企業管理', [], ['title'=>'企業管理']) !!}</li>
+					<li>{!! HTML::linkRoute('holders/index', '担当者管理', [], ['title'=>'担当者管理']) !!}</li>
 				</ul>
                 <div class="col-md-12">
                     @yield('content')

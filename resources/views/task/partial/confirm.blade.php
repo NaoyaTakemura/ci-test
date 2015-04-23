@@ -28,5 +28,9 @@
 								<th>進捗</th>
 								<td>{{ $data['progress'] }}</td>
 							</tr>
+							<tr>
+								<th>ボール保持者</th>
+								<td>{{ $data['holder_id'] }}</td>
+							</tr>
 						</tbody>
 					</table>

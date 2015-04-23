@@ -1,7 +1,7 @@
     @extends('app')
       
       @section('content')
-					<h2 class="page-header">タスク編集</h2>
+					<h2 class="page-header"><small>タスク編集</small></h2>
 					{!! Form::open(array('route' => array('tasks/editRegist'))) !!}
 						@include('task.partial.confirm', $data)
 					{!! Form::submit('登録', ['class' => 'btn btn-primary']) !!}

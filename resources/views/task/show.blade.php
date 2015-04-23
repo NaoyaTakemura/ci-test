@@ -1,7 +1,7 @@
     @extends('app')
       
       @section('content')
-					<h2 class="page-header">{{ $task->title }}</h2>
+					<h2 class="page-header"><small>{{ $task->title }}</small></h2>
 					{!! $registed !!}
 					<table class="table table-striped table-hover">
 						<tbody>
@@ -35,7 +35,11 @@
 							</tr>
 							<tr>
 								<th>進捗</th>
-								<td>{{ $task->progress }}%</td>
+								<td>{{ $task->progress or '0' }}%</td>
+							</tr>
+							<tr>
+								<th>ボール保持者</th>
+								<td>{{ $task->holders->name or '0' }}</td>
 							</tr>
 						</tbody>
 					</table>

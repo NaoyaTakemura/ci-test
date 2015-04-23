@@ -2,31 +2,35 @@
 						<tbody>
 							<tr>
 								<th width="25%">企業</th>
-								<td width="75%">{!! $errors->first('company_id', '<p>:message</p>') !!}{!! Form::select('company_id', $companies, $data->company_id, ['id' => 'company_id']) !!}</td>
+								<td width="75%">{!! $errors->first('company_id', '<p class="text-danger">:message</p>') !!}{!! Form::select('company_id', $companies, $data->company_id, ['id' => 'company_id']) !!}</td>
 							</tr>
 							<tr>
 								<th>プロジェクト</th>
-								<td>{!! $errors->first('project_id', '<p>:message</p>') !!}{!! Form::select('project_id', $projects, $data->project_id, ['id' => 'project_id']) !!}</td>
+								<td>{!! $errors->first('project_id', '<p class="text-danger">:message</p>') !!}{!! Form::select('project_id', $projects, $data->project_id, ['id' => 'project_id']) !!}</td>
 							</tr>
 							<tr>
 								<th>タスク</th>
-								<td>{!! $errors->first('title', '<p>:message</p>') !!}<input type='text' name='title' class='w60p' value='{{ $data->title or '' }}' /></td>
+								<td>{!! $errors->first('title', '<p class="text-danger">:message</p>') !!}<input type='text' name='title' class='w60p' value='{{ $data->title or '' }}' /></td>
 							</tr>
 							<tr>
 								<th>内容</th>
-								<td>{!! $errors->first('text', '<p>:message</p>') !!}<textarea name='text' class='w60p' rows='4'>{{ $data->text or '' }}</textarea></td>
+								<td>{!! $errors->first('text', '<p class="text-danger">:message</p>') !!}<textarea name='text' class='w60p' rows='4'>{{ $data->text or '' }}</textarea></td>
 							</tr>
 							<tr>
 								<th>プライオリティ</th>
-								<td>{!! $errors->first('priority', '<p>:message</p>') !!}<input type='text' name='priority' value='{{ $data->priority or '' }}' /></td>
+								<td>{!! $errors->first('priority', '<p class="text-danger">:message</p>') !!}<input type='text' name='priority' value='{{ $data->priority or '' }}' /></td>
 							</tr>
 							<tr>
 								<th>期限</th>
-								<td>{!! $errors->first('limit', '<p>:message</p>') !!}<input type='text' id="datepicker" name='limit' value='' /></td>
+								<td>{!! $errors->first('limit', '<p class="text-danger">:message</p>') !!}<input type='text' id="datepicker" name='limit' value='' /></td>
 							</tr>
 							<tr>
 								<th>進捗</th>
-								<td>{!! $errors->first('progress', '<p>:message</p>') !!}<input type='text' name='progress' value='{{ $data->progress or '' }}' /></td>
+								<td>{!! $errors->first('progress', '<p class="text-danger">:message</p>') !!}<input type='text' name='progress' value='{{ $data->progress or '' }}' /></td>
+							</tr>
+							<tr>
+								<th>ボール保持者</th>
+								<td>{!! $errors->first('holder_id', '<p class="text-danger">:message</p>') !!}{!! Form::select('holder_company_id', $companies, $data->holder_company_id, ['id' => 'holder_company_id']) !!} {!! Form::select('holder_id', $holders, $data->holder_id, ['id' => 'holder_id']) !!}</td>
 							</tr>
 						</tbody>
 					</table>

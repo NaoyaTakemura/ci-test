@@ -3,10 +3,11 @@
 use App\Task;
 use App\CompanyMaster;
 use App\ProjectMaster;
+use App\Holder;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Utility;
+use Utility;	
 use Debugbar;
 
 class TasksController extends Controller {
@@ -22,15 +23,21 @@ class TasksController extends Controller {
      * @var CompanyMaster
      */
     protected $companyMaster;
-
+	
+	/**
+     * @var Holder
+     */
+    protected $holder;
+	
     /**
      * @param Article $article
      */
-    public function __construct(Task $task, ProjectMaster $projectMaster, CompanyMaster $companyMaster)
+    public function __construct(Task $task, ProjectMaster $projectMaster, CompanyMaster $companyMaster, Holder $holder)
     {
 		$this->task          = $task;
         $this->projectMaster = $projectMaster;
 		$this->companyMaster = $companyMaster;
+		$this->holder        = $holder;
 		
 		//CSRF対策は自動でやってくれるようだ
 
@@ -61,11 +68,11 @@ class TasksController extends Controller {
 	 */
 	public function show($id)
 	{
-		$task = $this->task->getTask($id);
+		$task = $this->task->getTaskWithHolder($id);
 		if(empty($task)){ 
 			abort(404, \Lang::get('message.taskNotFound'));
 		}
-		
+
 		//登録完了時のメッセージ作成
 		$registed = '';
 		if(\Session::has('tcRegist')){
@@ -82,7 +89,7 @@ class TasksController extends Controller {
 			}
 			\Session::forget('teRegist');
 		}
-		
+
 		return view('task.show')->with(compact('task', 'registed'));
 	}
 	
@@ -105,7 +112,7 @@ class TasksController extends Controller {
 		$data = new Task();
 		$data->fill($tcFormData);
 			
-		return $this->_renderCreateInput($data);
+		return $this->_renderCreateInput($data, 'task.createInput');
 	}
 	
 	/**
@@ -126,9 +133,7 @@ class TasksController extends Controller {
 			}
 			\Session::put('tcFormData', $data);
 			
-			//表示用に名前を取得
-			$data['company_id'] = $this->companyMaster->getCompanyName($data['company_id']);
-			$data['project_id'] = $this->projectMaster->getProjectName($data['project_id']);
+			$this->_setNames($data);
 			
 			return view('task.createConfirm')->with(compact('data'));
 		}
@@ -192,16 +197,10 @@ class TasksController extends Controller {
 			$data->fill($teFormData);
 		}
 		
-		//
+		// 企業IDをオブジェクトに追加
 		$data->setAttribute('company_id', $data->projectMasters->company_id);
 		
-		$companies = $this->companyMaster->getCompanyList();
-		Utility::reflexiveEscape($companies);
-		
-		$projects = $this->projectMaster->getProjectListByCompany($data->company_id);
-		Utility::reflexiveEscape($projects);
-		
-		return view('task.editInput')->with(compact('companies', 'projects', 'data'));
+		return $this->_renderCreateInput($data, 'task.editInput');
 	}
 
 	/**
@@ -221,8 +220,8 @@ class TasksController extends Controller {
 			\Session::put('teFormData', $data);
 			
 			//表示用に名前を取得
-			$data['company_id'] = $this->companyMaster->getCompanyName($data['company_id']);
-			$data['project_id'] = $this->projectMaster->getProjectName($data['project_id']);
+			
+			$this->_setNames($data);
 			$data['id'] = \Session::get('teId');
 			
 			return view('task.editConfirm')->with(compact('data'));
@@ -274,8 +273,7 @@ class TasksController extends Controller {
 		}
 		
 		$data = $task->toArray();
-		$data['company_id'] = $this->companyMaster->getCompanyName($task->projectMasters->company_id);
-		$data['project_id'] = $this->projectMaster->getProjectName($data['project_id']);
+		$this->_setNames($data);
 
 		return view('task.deleteConfirm')->with(compact('data'));
 	}
@@ -307,31 +305,12 @@ class TasksController extends Controller {
 	}
 	
 	/**
-	 * ajax用プロジェクトリスト取得
-	 */
-	public function getProjectList(Request $request)
-	{
-		$id = $request->id;
-		$list = array();
-		if(is_null($id) === false){
-			$tmp = $this->projectMaster->getProjectListByCompany($id);
-			foreach($tmp as $key => $val){
-				$arr['id'] = $key;
-				$arr['name'] = $val;
-				$list[] = $arr;
-			}
-		}
-		
-		return \Response::json($list);
-	}
-	
-	/**
 	 * 新規登録 入力画面render処理
 	 * 
 	 * @param type $data
 	 * @return type 
 	 */
-	private function _renderCreateInput($data = null)
+	private function _renderCreateInput($data = null, $template = 'task.createInput')
 	{
 		$companies = $this->companyMaster->getCompanyList();
 		Utility::reflexiveEscape($companies);
@@ -340,12 +319,26 @@ class TasksController extends Controller {
 		if(isset($data->company_id) !== false){
 			//確認画面から戻った場合 セッションから取得した値をモデルにセットし直す
 			$projects = $this->projectMaster->getProjectListByCompany($data->company_id);
+			$holders = $this->holder->getHolderListById($data->holder_id);
+			$data->setAttribute('holder_company_id', $this->holder->getCompanyIdById($data->holder_id));
 		} else {
 			$projects = $this->projectMaster->getProjectListByCompany(1);
+			$holders = $this->holder->getHolderListByCompany(1);
+			$data->setAttribute('holder_company_id', 1);
 		}
 		Utility::reflexiveEscape($projects);
 		
-		return view('task.createInput')->with(compact('companies', 'projects', 'data'));
+		return view($template)->with(compact('companies', 'projects', 'data', 'holders'));
+	}
+	
+	/**
+	 * 確認画面各種名前取得処理
+	 */
+	private function _setNames(&$data)
+	{
+		$data['company_id'] = $this->companyMaster->getCompanyName($data['company_id']);
+		$data['project_id'] = $this->projectMaster->getProjectName($data['project_id']);
+		$data['holder_id'] = $this->holder->getHolderName($data['holder_id']);
 	}
 
 }

@@ -1,13 +1,13 @@
     @extends('app')
       
       @section('content')
-					<h2 class="page-header">企業登録</h2>
+					<h2 class="page-header"><small>企業登録</small></h2>
 					{!! Form::open(array('route' => 'companyMasters/createConfirm')) !!}
 					<table class="table table-striped table-hover" id='company-create'>
 						<tbody>
 							<tr>
 								<th>企業名</th>
-								<td>{!! $errors->first('name', '<p>:message</p>') !!}<input type='text' name='name' class='w60p' value='{{ $data->name or '' }}' /></td>
+								<td>{!! $errors->first('name', '<p class="text-danger">:message</p>') !!}<input type='text' name='name' class='w60p' value='{{ $data->name or '' }}' /></td>
 							</tr>
 						</tbody>
 					</table>

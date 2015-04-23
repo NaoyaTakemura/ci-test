@@ -81,6 +81,7 @@ return [
 	"project_duplication"  =>"既に登録されています。",
 	"company_duplication"  =>"既に登録されています。",
 	"task_priority_duplication"  =>"既に登録されています。",
+	"holder_duplication"  =>"既に登録されています。",
 	
 	/*
 	|--------------------------------------------------------------------------

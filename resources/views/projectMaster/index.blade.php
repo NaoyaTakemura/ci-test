@@ -1,7 +1,7 @@
     @extends('app')
       
       @section('content')
-					<h2 class="page-header">プロジェクト一覧</h2>
+					<h2 class="page-header"><small>プロジェクト一覧</small></h2>
 					{!! $deleted !!}
 					<div>
 						{!! HTML::linkRoute('projectMasters/createInput', '新規登録', [], ['title'=>'新規登録', 'class' => 'btn btn-primary']) !!}

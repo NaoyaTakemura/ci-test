@@ -19,6 +19,7 @@ class CreateTasksTable extends Migration {
 			$table->string('title');
 			$table->text('text');
 			$table->timestamp('limit');
+			$table->integer('holder_id');
 			$table->integer('priority');
 			$table->string('progress');
 			$table->char('delete_flag', 1)->default(0);
