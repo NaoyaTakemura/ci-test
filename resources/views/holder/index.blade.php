@@ -11,8 +11,8 @@
 						<thead>
 							<tr>
 								<th>ID</th>
-								<th>担当名</th>
 								<th>企業名</th>
+								<th>担当名</th>
 								<th>編集</th>
 								<th>削除</th>
 							</tr>
@@ -21,8 +21,8 @@
 						@foreach($holders as $holder)
 							<tr>
 								<td>{{ $holder->id }}</td>
-								<td>{!! HTML::linkRoute('holders/show', e($holder->name), [$holder->id], ['title'=>e($holder->name)]) !!}</td>
 								<td>{{ $holder->companyMasters->name }}</td>
+								<td>{!! HTML::linkRoute('holders/show', e($holder->name), [$holder->id], ['title'=>e($holder->name)]) !!}</td>
 								<td>{!! HTML::linkRoute('holders/editInput', '編集', [$holder->id], ['title'=>'編集']) !!}</td>
 								<td>{!! HTML::linkRoute('holders/deleteConfirm', '削除', [$holder->id], ['title'=>'削除']) !!}</td>
 							</tr>
