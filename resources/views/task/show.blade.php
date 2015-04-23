@@ -39,7 +39,7 @@
 							</tr>
 							<tr>
 								<th>ボール保持者</th>
-								<td>{{ $task->holders->name or '0' }}</td>
+								<td>{{ $task->holders->name or '' }}</td>
 							</tr>
 						</tbody>
 					</table>

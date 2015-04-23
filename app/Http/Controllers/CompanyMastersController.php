@@ -155,19 +155,19 @@ class CompanyMastersController extends Controller {
 		
 		if(empty($ceFormData)) {
 			//フォームデータがなければDBから取得
-			$company = $this->companyMaster->getCompany($id);
-			if(empty($company)){ 
+			$data = $this->companyMaster->getCompany($id);
+			if(empty($data)){ 
 				abort(404, \Lang::get('message.companyNotFound'));
 			}
 			\Session::forget('ccFormData');
 		} else {
 			//フォームのデータをモデルにセットし直す
-			$company = new CompanyMaster();
-			$company->fill($ceFormData);
+			$data = new CompanyMaster();
+			$data->fill($ceFormData);
 		}
 		
 		
-		return view('companyMaster.editInput')->with(compact('company'));
+		return view('companyMaster.editInput')->with(compact('data'));
 	}
 
 	/**

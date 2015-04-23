@@ -267,7 +267,7 @@ class TasksController extends Controller {
 	public function deleteConfirm($id)
 	{
 		\Session::put('tdId', $id);
-		$task = $this->task->getTask($id);
+		$task = $this->task->getTaskWithCompanyId($id);
 		if(empty($task)){ 
 			abort(404, \Lang::get('message.taskNotFound'));
 		}
@@ -327,6 +327,7 @@ class TasksController extends Controller {
 			$data->setAttribute('holder_company_id', 1);
 		}
 		Utility::reflexiveEscape($projects);
+		Utility::reflexiveEscape($holders);
 		
 		return view($template)->with(compact('companies', 'projects', 'data', 'holders'));
 	}

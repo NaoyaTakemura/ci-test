@@ -50,6 +50,21 @@ class Task extends Model {
 		return $this->find($id);
 	}
 	
+	public function getTaskWithCompanyId($id)
+	{
+		$task = $this->with('projectMasters')
+			->where('id', $id)
+			->get();
+		
+		$ret = null;
+		if(count($task) > 0){
+			$ret = $task[0];
+			$ret->setAttribute('company_id', $ret->projectMasters->company_id);
+		}
+		
+		return $ret;
+	}
+	
 	public function getTaskWithHolder($id)
 	{
 		$task = $this->with('holders')

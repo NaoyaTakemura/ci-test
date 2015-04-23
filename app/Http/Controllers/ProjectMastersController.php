@@ -99,8 +99,8 @@ class ProjectMastersController extends Controller {
 		
 		$data = new ProjectMaster();
 		$data->fill($pcFormData);
-			
-		return $this->_renderCreateInput($data);
+
+		return $this->_renderCreateInput($data, 'projectMaster.createInput');
 	}
 
 	/**
@@ -180,10 +180,11 @@ class ProjectMastersController extends Controller {
 			$project->fill($peFormData);
 		}
 		
-		$companies = $this->companyMaster->getCompanyList();
+		/*$companies = $this->companyMaster->getCompanyList();
 
 		Utility::reflexiveEscape($companies);
-		return view('projectMaster.editInput')->with(compact('companies', 'project'));
+		return view('projectMaster.editInput')->with(compact('companies', 'project'));*/
+		return $this->_renderCreateInput($project, 'projectMaster.editInput');
 	}
 
 	/**
@@ -302,11 +303,11 @@ class ProjectMastersController extends Controller {
 	 * @param type $data
 	 * @return type 
 	 */
-	private function _renderCreateInput($data = null)
+	private function _renderCreateInput($data = null, $template = 'projectMaster.createInput')
 	{
 		$companies = $this->companyMaster->getCompanyList();
 		Utility::reflexiveEscape($companies);
-		return view('projectMaster.createInput')->with(compact('companies', 'data'));
+		return view($template)->with(compact('companies', 'data'));
 	}
 
 }

@@ -13,7 +13,7 @@ class CreateCompanyRequest extends Request {
 		//コントローラー側よりも先にバリデーションが走るため、前ページリダイレクトされてしまう。
 		//デバッグバーをONにしてあると、リダイレクト先にjsやcssが指定されることがある。
 		if(\Request::server('HTTP_REFERER') != route("companyMasters/createInput") &&
-			\Request::server('HTTP_REFERER') != route("companyMasters/editInput", \Session::get('peId'))){
+			\Request::server('HTTP_REFERER') != route("companyMasters/editInput", \Session::get('ceId'))){
 			$this->redirect = route("companyMasters/index");
 		}
 	}

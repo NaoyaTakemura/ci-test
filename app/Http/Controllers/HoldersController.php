@@ -56,8 +56,8 @@ class HoldersController extends Controller {
 	 */
 	public function show($id)
 	{
-		$holder = $this->holder->getholder($id);
-		if(empty($holder)){ 
+		$data = $this->holder->getholder($id);
+		if(empty($data)){ 
 			abort(404, \Lang::get('message.holderNotFound'));
 		}
 		
@@ -78,7 +78,7 @@ class HoldersController extends Controller {
 			\Session::forget('heRegist');
 		}
 		
-		return view('holder.show')->with(compact('holder', 'registed'));
+		return view('holder.show')->with(compact('data', 'registed'));
 	}
 	
 	/**
@@ -100,7 +100,7 @@ class HoldersController extends Controller {
 		$data = new Holder();
 		$data->fill($hcFormData);
 			
-		return $this->_renderCreateInput($data);
+		return $this->_renderCreateInput($data, 'holder.createInput');
 	}
 
 	/**
@@ -179,11 +179,8 @@ class HoldersController extends Controller {
 			$holder = new Holder();
 			$holder->fill($heFormData);
 		}
-		
-		$companies = $this->companyMaster->getCompanyList();
 
-		Utility::reflexiveEscape($companies);
-		return view('holder.editInput')->with(compact('companies', 'holder'));
+		return $this->_renderCreateInput($holder, 'holder.editInput');
 	}
 
 	/**
@@ -243,12 +240,12 @@ class HoldersController extends Controller {
 	public function deleteConfirm($id)
 	{
 		\Session::put('hdId', $id);
-		$holder = $this->holder->getHolder($id);
-		if(empty($holder)){ 
+		$data = $this->holder->getHolder($id);
+		if(empty($data)){ 
 			abort(404, \Lang::get('message.holderNotFound'));
 		}
 		
-		return view('holder.deleteConfirm')->with(compact('holder'));
+		return view('holder.deleteConfirm')->with(compact('data'));
 	}
 	
 	/**
@@ -302,11 +299,11 @@ class HoldersController extends Controller {
 	 * @param type $data
 	 * @return type 
 	 */
-	private function _renderCreateInput($data = null)
+	private function _renderCreateInput($data = null, $template = 'holder.createInput')
 	{
 		$companies = $this->companyMaster->getCompanyList();
 		Utility::reflexiveEscape($companies);
-		return view('holder.createInput')->with(compact('companies', 'data'));
+		return view($template)->with(compact('companies', 'data'));
 	}
 
 }
