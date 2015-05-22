@@ -40,6 +40,7 @@ class Task extends Model {
 	{
 		return $this->with('projectMasters', 'projectMasters.companyMasters', 'holders')
 			->where('delete_flag', 0)
+			->where('progress', '<', 100)
 			->orderBy('priority', 'asc')
 			->orderBy('limit', 'asc')
 			->get();
