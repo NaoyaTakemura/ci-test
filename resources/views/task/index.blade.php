@@ -1,6 +1,8 @@
     @extends('app')
       
       @section('content')
+					<script type="text/javascript" src="/js/jquery.tgClickToolTip.js"></script>
+					<link href="/css/jquery.tgClickToolTip.css" rel="stylesheet">
 					<h2 class="page-header"><small>タスク一覧</small></h2>
 					{!! $deleted !!}
 					<div>
@@ -27,7 +29,11 @@
 								<td>{{ $task->id }}</td>
 								<td>{{ $task->projectMasters->companyMasters->name }}</td>
 								<td>{{ $task->projectMasters->name }}</td>
-								<td>{!! HTML::linkRoute('tasks/show', e($task->title), [$task->id], ['title'=>e($task->title)]) !!}</td>
+								<td>
+									<img class="tooltip{{ $task->id }}" src="/images/file.png" />
+									{!! HTML::linkRoute('tasks/show', e($task->title), [$task->id], ['title'=>e($task->title)]) !!}
+									<p id="tooltip{{ $task->id }}" class="toolTip invisible">{!! nl2br(e($task->text)) !!}</p>
+								</td>
 								<td>{{ $task->holders->name }}</td>
 								<td>{{ date('Y/m/d G:i', strtotime($task->limit)) }}</td>
 								<td>{!! HTML::linkRoute('tasks/editInput', '編集', [$task->id], ['title'=>'編集']) !!}</td>
@@ -36,8 +42,18 @@
 						@endforeach
 						</tbody>
 					</table>
+					<script>
+						$(function(){
+							$(this).tgClickToolTip({
+								selector : '#task-list td:nth-child(4) img',    // セレクタ
+								PositionTop : '-20',            // ツールチップ出現位置（+数値で下方向へ移動）
+								PositionLeft : '30',            // ツールチップ出現位置（+数値で右方向へ移動）
+							});
+						});
+					</script>
 					@else
 					<div>データが存在しません</div>
+
 					@endif
       @endsection
 
