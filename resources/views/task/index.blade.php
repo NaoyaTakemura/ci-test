@@ -47,7 +47,7 @@
 							$(this).tgClickToolTip({
 								selector : '#task-list td:nth-child(4) img',    // セレクタ
 								PositionTop : '-20',            // ツールチップ出現位置（+数値で下方向へ移動）
-								PositionLeft : '30',            // ツールチップ出現位置（+数値で右方向へ移動）
+								PositionLeft : '40',            // ツールチップ出現位置（+数値で右方向へ移動）
 							});
 						});
 					</script>
