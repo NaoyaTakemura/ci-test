@@ -94,14 +94,19 @@ class Task extends Model {
 			$task = $this->select('id')
 				->where('priority', $data['priority'])
 				->where('id', '!=', $data['id'])
+				/*->where(function($q) {
+					$q->where('delete_flag', 0)
+					->orWhere('progress', '<', 100);
+				})*/
 				->where('delete_flag', 0)
+				->where('progress', '<', 100)
 				->get();
 		
 			if(count($task) > 0){
 				$ret = $task[0];
 			}
 		}
-		
+
 		return $ret;
 	}
 	
