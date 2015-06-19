@@ -1,6 +1,11 @@
 .w60p {
 	width:60%;
 }
+
+.btn {
+	margin-right: 10px;
+}
+
 ul.sortable {
 	list-style: none;
 	margin-bottom: 50px;
