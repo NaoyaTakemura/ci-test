@@ -50,14 +50,17 @@ class TasksController extends Controller {
 	 */
 	public function index()
 	{
-		$deleted = '';
+		$message = '';
 		if(\Session::has('tdRegist')){
-			$deleted = '削除が完了しました';
+			$message = '削除が完了しました';
 			\Session::forget('tdRegist');
+		} else if(\Session::has('pRegist')) {
+			$message = 'プライオリティの更新が完了しました';
+			\Session::forget('pRegist');
 		}
 		$tasks = $this->task->getTasks();
 		
-		return view('task.index')->with(compact('tasks', 'deleted'));
+		return view('task.index')->with(compact('tasks', 'message'));
 	}
 
 	/**
@@ -253,7 +256,7 @@ class TasksController extends Controller {
 			//登録完了メッセージ表示用パラメータ
 			\Session::put('teRegist', $id);
 			
-			return redirect()->route("tasks/show", $id);
+			return redirect()->route("tasks/index");
 
 		}
 	}
@@ -303,7 +306,31 @@ class TasksController extends Controller {
 			return redirect()->route("tasks/index");
 		}
 	}
-	
+
+	public function priorityList()
+	{
+		$tasks = $this->task->getTasks();
+		
+		return view('task.priorityList')->with(compact('tasks'));
+	}
+
+	/**
+	 * 削除処理
+	 */
+	public function priorityRegist(Requests\UpdatePriorityRequest $request)
+	{
+		//登録処理
+		if($this->task->updatePriorities($request->priority) === false){
+			abort(500);
+		}
+			
+		//登録完了メッセージ表示用パラメータ
+		\Session::put('pRegist', true);
+		
+		return redirect()->route("tasks/index");
+
+	}
+
 	/**
 	 * 新規登録 入力画面render処理
 	 * 

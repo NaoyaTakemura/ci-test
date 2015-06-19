@@ -175,4 +175,34 @@ class Task extends Model {
 		));
 		return $task->save();
 	}
+	
+	/**
+	 * プライオリティの更新
+	 */
+	public function updatePriorities($ids)
+	{
+		foreach($ids as $key => $val){
+			if($this->_updateTaskdata($val, array('priority' => $key+1)) === false){
+				DB::rollback();
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
+	/**
+	 * 汎用タスクデータ更新
+	 */
+	private function _updateTaskdata($id, $param)
+	{
+		$task = $this->getTask($id);
+		$arr = array();
+		foreach($param as $key => $val){
+			$arr[$key] = $val;
+		}
+		$task->fill($arr);
+		
+		return $task->save();
+	}
 }

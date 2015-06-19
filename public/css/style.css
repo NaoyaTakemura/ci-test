@@ -1,3 +1,33 @@
 .w60p {
 	width:60%;
 }
+ul.sortable {
+	list-style: none;
+	margin-bottom: 50px;
+}
+ul.sortable li{
+	height: 32px;
+	padding: 3px;
+	margin-bottom: 2px;
+	border: 1px solid #c9c9c9;	
+	text-overflow: ellipsis;
+}
+ul.sortable li span.p-name {
+	display: inline-block; 
+	width: 20%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+ul.sortable li span.t-name {
+	display: inline-block; 
+	width: 70%;
+	color: #1c94c4;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+ul.sortable li.sortable-placeholder {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    border: 1px dashed #ccc;
+}

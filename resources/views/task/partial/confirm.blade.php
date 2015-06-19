@@ -16,10 +16,10 @@
 								<th>内容</th>
 								<td>{!! nl2br(e( $data['text'])) !!}</td>
 							</tr>
-							<tr>
+							<!--tr>
 								<th>プライオリティ</th>
 								<td>{{ $data['priority'] }}</td>
-							</tr>
+							</tr-->
 							<tr>
 								<th>期限</th>
 								<td>{{ $data['limit'] }}</td>

@@ -16,10 +16,10 @@
 								<th>内容</th>
 								<td>{!! $errors->first('text', '<p class="text-danger">:message</p>') !!}<textarea name='text' class='w60p' rows='4'>{{ $data->text or '' }}</textarea></td>
 							</tr>
-							<tr>
+							<!--tr>
 								<th>プライオリティ</th>
 								<td>{!! $errors->first('priority', '<p class="text-danger">:message</p>') !!}<input type='text' name='priority' value='{{ $data->priority or '' }}' /></td>
-							</tr>
+							</tr-->
 							<tr>
 								<th>期限</th>
 								<td>{!! $errors->first('limit', '<p class="text-danger">:message</p>') !!}<input type='text' id="datepicker" name='limit' value='' /></td>
@@ -34,6 +34,7 @@
 							</tr>
 						</tbody>
 					</table>
+					<input type='hidden' name='priority' value='{{ $data->priority or '' }}' />
 					{!! Form::submit('確認画面へ', ['class' => 'btn btn-primary']) !!}
 					{!! HTML::linkRoute('tasks/index', '一覧画面へ', [], ['title'=>'一覧画面へ', 'class'=>'btn btn-default']) !!}
 					

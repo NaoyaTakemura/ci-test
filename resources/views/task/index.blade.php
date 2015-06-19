@@ -4,7 +4,7 @@
 					<script type="text/javascript" src="/js/jquery.tgClickToolTip.js"></script>
 					<link href="/css/jquery.tgClickToolTip.css" rel="stylesheet">
 					<h2 class="page-header"><small>タスク一覧</small></h2>
-					{!! $deleted !!}
+					{!! $message !!}
 					<div>
 						{!! HTML::linkRoute('tasks/createInput', '新規登録', [], ['title'=>'新規登録', 'class' => 'btn btn-primary']) !!}
 					</div>

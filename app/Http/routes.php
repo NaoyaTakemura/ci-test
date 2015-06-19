@@ -68,6 +68,10 @@ Route::post('companyMasters/delete', ['as'=>'companyMasters/delete', 'uses'=>'Co
 /* tasks */
 Route::get('tasks', ['as'=>'tasks/index', 'uses'=>'tasksController@index']);
 Route::post('tasks', ['as'=>'tasks/index', 'uses'=>'tasksController@index']);
+Route::get('tasks/priorityList', ['as'=>'tasks/priorityList', 'uses'=>'tasksController@priorityList']);
+Route::post('tasks/priorityList', ['as'=>'tasks/priorityList', 'uses'=>'tasksController@priorityList']);
+Route::get('tasks/priorityRegist', ['as'=>'tasks/priorityRegist', 'uses'=>'tasksController@priorityRegist']);
+Route::post('tasks/priorityRegist', ['as'=>'tasks/priorityRegist', 'uses'=>'tasksController@priorityRegist']);
 Route::get('tasks/show/{id}', ['as'=>'tasks/show', 'uses'=>'tasksController@show'])->where('id', '[0-9]+');
 Route::post('tasks/show/{id}', ['as'=>'tasks/show', 'uses'=>'tasksController@show'])->where('id', '[0-9]+');
 Route::get('tasks/createInput', ['as'=>'tasks/createInput', 'uses'=>'tasksController@createInput']);
