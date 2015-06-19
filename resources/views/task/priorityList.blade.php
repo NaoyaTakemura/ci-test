@@ -11,7 +11,7 @@
 					<ul class="sortable">
 						@foreach($tasks as $task)
 							<li>
-								<span class="p-name">{{ $task->projectMasters->name }}</span>
+								<span class="p-name">{{ $task->projectMasters->companyMasters->name }} ： {{ $task->projectMasters->name }}</span>
 								
 								<span class="t-name"><img class="tooltip{{ $task->id }}" src="/images/file.png" />	{!! e($task->title) !!}</span>
 								<input type="hidden" name="priority[]" value="{{ $task->id }}" />	
