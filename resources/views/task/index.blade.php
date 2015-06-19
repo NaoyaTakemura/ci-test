@@ -5,10 +5,7 @@
 					<link href="/css/jquery.tgClickToolTip.css" rel="stylesheet">
 					<h2 class="page-header"><small>タスク一覧</small></h2>
 					{!! $message !!}
-					<div>
-						{!! HTML::linkRoute('tasks/createInput', '新規登録', [], ['title'=>'新規登録', 'class' => 'btn btn-primary']) !!}
-						{!! HTML::linkRoute('tasks/priorityList', 'プライオリティ変更', [], ['title'=>'プライオリティ変更', 'class' => 'btn btn-primary']) !!}
-					</div>
+					@include('task.partial.menu')
 					@if(count($tasks) > 0)
 					<table class="table table-striped table-hover" id="task-list">
 						<thead>

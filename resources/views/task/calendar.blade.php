@@ -5,10 +5,7 @@
 					<script type="text/javascript" src="/js/moment.min.js"></script>
 					<script type="text/javascript" src="/js/fullcalendar.min.js"></script>
 					<h2 class="page-header"><small>カレンダー</small></h2>
-					<div>
-						{!! HTML::linkRoute('tasks/createInput', '新規登録', [], ['title'=>'新規登録', 'class' => 'btn btn-primary']) !!}
-						{!! HTML::linkRoute('tasks/priorityList', 'プライオリティ変更', [], ['title'=>'プライオリティ変更', 'class' => 'btn btn-primary']) !!}
-					</div>
+					@include('task.partial.menu')
 					<div id="calendar"></div>
 
 					<script>

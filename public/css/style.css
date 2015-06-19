@@ -1,3 +1,11 @@
+h2 {
+	margin-top: 10px !important;
+}
+
+div.menu-area {
+	margin-bottom: 30px;
+}
+
 .w60p {
 	width:60%;
 }
@@ -42,7 +50,7 @@ ul.sortable li.sortable-placeholder {
 /***** calendar *****/
 #calendar {
     width: 80%;
-    margin: 30px auto;
+    margin: 0 auto 30px;
 }
 /* 日曜日 */
 .fc-sun {

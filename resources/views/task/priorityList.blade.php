@@ -5,7 +5,7 @@
 					<script type="text/javascript" src="/js/jquery.sortable.min.js"></script>
 					<link href="/css/jquery.tgClickToolTip.css" rel="stylesheet">
 					<h2 class="page-header"><small>プライオリティ設定</small></h2>
-
+					@include('task.partial.menu')
 					@if(count($tasks) > 0)
 					{!! Form::open(array('route' => array('tasks/priorityRegist'))) !!}
 					<ul class="sortable">
