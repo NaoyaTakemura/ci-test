@@ -52,7 +52,8 @@ class ProjectMaster extends Model {
 	{
 		$this->fill(array(
 				'company_id' => $data['company_id'],
-				'name'       => $data['name']
+				'name'       => $data['name'],
+				'color'      => $data['color']
 			));
 		return $this->save();
 	}
@@ -105,7 +106,8 @@ class ProjectMaster extends Model {
 		$project = $this->getProject($id);
 		$project->fill(array(
 			'company_id' => $data['company_id'],
-			'name'       => $data['name']
+			'name'       => $data['name'],
+			'color'      => $data['color']
 		));
 		return $project->save();
 	}

@@ -21,8 +21,8 @@
 								<td>{{ $data['priority'] }}</td>
 							</tr-->
 							<tr>
-								<th>期限</th>
-								<td>{{ $data['limit'] }}</td>
+								<th>期間</th>
+								<td>{{ $data['start'] }}　～　{{ $data['limit'] }}</td>
 							</tr>
 							<tr>
 								<th>進捗</th>

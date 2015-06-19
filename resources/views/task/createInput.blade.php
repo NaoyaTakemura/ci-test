@@ -12,7 +12,8 @@
 					<script type="text/javascript">
 						var pUrl = "{{ route('projectMasters/getProjectList') }}";
 						var hUrl = "{{ route('holders/getHolderList') }}";
-						var dateStr = "{{ $data->limit }}".substring(0, 16);
+						var dateStrS = "{{ $data->start }}".substring(0, 16);
+						var dateStrE = "{{ $data->limit }}".substring(0, 16);
 					</script>
 					<script type="text/javascript" src="/js/task/taskForm.js"></script>
       @endsection

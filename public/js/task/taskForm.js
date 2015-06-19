@@ -1,8 +1,13 @@
 $(function () {
-	$("#datepicker").datetimepicker({
+	$("#datepickerS").datetimepicker({
 		format: 'Y-m-d G:i',
 		lang: 'ja',
-		value: dateStr
+		value: dateStrS
+	});
+	$("#datepickerE").datetimepicker({
+		format: 'Y-m-d G:i',
+		lang: 'ja',
+		value: dateStrE
 	});
 
 	$.ajaxSetup({

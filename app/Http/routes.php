@@ -72,6 +72,8 @@ Route::get('tasks/priorityList', ['as'=>'tasks/priorityList', 'uses'=>'tasksCont
 Route::post('tasks/priorityList', ['as'=>'tasks/priorityList', 'uses'=>'tasksController@priorityList']);
 Route::get('tasks/priorityRegist', ['as'=>'tasks/priorityRegist', 'uses'=>'tasksController@priorityRegist']);
 Route::post('tasks/priorityRegist', ['as'=>'tasks/priorityRegist', 'uses'=>'tasksController@priorityRegist']);
+Route::get('tasks/calendar', ['as'=>'tasks/calendar', 'uses'=>'tasksController@calendar']);
+Route::post('tasks/calendar', ['as'=>'tasks/calendar', 'uses'=>'tasksController@calendar']);
 Route::get('tasks/show/{id}', ['as'=>'tasks/show', 'uses'=>'tasksController@show'])->where('id', '[0-9]+');
 Route::post('tasks/show/{id}', ['as'=>'tasks/show', 'uses'=>'tasksController@show'])->where('id', '[0-9]+');
 Route::get('tasks/createInput', ['as'=>'tasks/createInput', 'uses'=>'tasksController@createInput']);

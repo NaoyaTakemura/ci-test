@@ -119,6 +119,7 @@ class Task extends Model {
 				'project_id' => $data['project_id'],
 				'title'      => $data['title'],
 				'text'       => $data['text'],
+				'start'      => $data['start'],
 				'limit'      => $data['limit'],
 				'holder_id'  => $data['holder_id'],
 				'priority'   => $data['priority'],
@@ -156,6 +157,7 @@ class Task extends Model {
 				'project_id' => $data['project_id'],
 				'title'      => $data['title'],
 				'text'       => $data['text'],
+				'start'      => $data['start'],
 				'limit'      => $data['limit'],
 				'holder_id'     => $data['holder_id'],
 				'priority'   => $data['priority'],
@@ -189,6 +191,20 @@ class Task extends Model {
 		}
 		
 		return true;
+	}
+	
+	/**
+	 * 日付自動更新の設定解除
+	 */
+	public function getClendarData()
+	{
+		return $this->join('project_masters', 'tasks.project_id', '=', 'project_masters.id')
+			->select('title', 'start', 'limit as end', 'color')
+			->where('tasks.delete_flag', 0)
+			->where('tasks.progress', '<', 100)
+			->orderBy('tasks.priority', 'asc')
+			->orderBy('tasks.limit', 'asc')
+			->get();
 	}
 	
 	/**

@@ -8,5 +8,9 @@
 								<th>プロジェクト名</th>
 								<td>{{ $data['name'] }}</td>
 							</tr>
+							<tr>
+								<th>プロジェクトカラー</th>
+								<td><span style="background-color: {{ $data['color'] }}">&emsp;</span> {{ $data['color'] }}</td>
+							</tr>
 						</tbody>
 					</table>

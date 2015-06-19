@@ -307,6 +307,9 @@ class TasksController extends Controller {
 		}
 	}
 
+	/**
+	 * プライオリティ入力
+	 */
 	public function priorityList()
 	{
 		$tasks = $this->task->getTasks();
@@ -315,7 +318,7 @@ class TasksController extends Controller {
 	}
 
 	/**
-	 * 削除処理
+	 * プライオリティ登録
 	 */
 	public function priorityRegist(Requests\UpdatePriorityRequest $request)
 	{
@@ -331,6 +334,16 @@ class TasksController extends Controller {
 
 	}
 
+	/**
+	 * カレンダー表示
+	 */
+	public function calendar()
+	{
+		$tasks = $this->task->getClendarData();
+
+		return view('task.calendar')->with('tasks', json_encode($tasks));
+	}
+	
 	/**
 	 * 新規登録 入力画面render処理
 	 * 

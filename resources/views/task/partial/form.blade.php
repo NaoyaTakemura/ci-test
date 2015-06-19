@@ -21,8 +21,8 @@
 								<td>{!! $errors->first('priority', '<p class="text-danger">:message</p>') !!}<input type='text' name='priority' value='{{ $data->priority or '' }}' /></td>
 							</tr-->
 							<tr>
-								<th>期限</th>
-								<td>{!! $errors->first('limit', '<p class="text-danger">:message</p>') !!}<input type='text' id="datepicker" name='limit' value='' /></td>
+								<th>期間</th>
+								<td>{!! $errors->first('limit', '<p class="text-danger">:message</p>') !!}<input type='text' id="datepickerS" name='start' value='' />　～　<input type='text' id="datepickerE" name='limit' value='' /></td>
 							</tr>
 							<tr>
 								<th>進捗</th>

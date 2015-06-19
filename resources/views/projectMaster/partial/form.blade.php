@@ -8,6 +8,10 @@
 								<th>プロジェクト名</th>
 								<td>{!! $errors->first('name', '<p class="text-danger">:message</p>') !!}<input type='text' name='name' class='w60p' value='{{ $data->name or '' }}' /></td>
 							</tr>
+							<tr>
+								<th>プロジェクトカラー</th>
+								<td>{!! $errors->first('color', '<p class="text-danger">:message</p>') !!}<input type='text' name='color' class='w60p' value='{{ $data->color or '' }}' /></td>
+							</tr>
 						</tbody>
 					</table>
 					{!! Form::submit('確認画面へ', ['class' => 'btn btn-primary']) !!}

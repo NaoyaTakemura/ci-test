@@ -9,6 +9,10 @@
 								<td>{{ $project->name }}</td>
 							</tr>
 							<tr>
+								<th>プロジェクトカラー</th>
+								<td><span style="background-color: {{ $project->color }}">&emsp;</span> {{ $project->color }}</td>
+							</tr>
+							<tr>
 								<th>企業名</th>
 								<td>{{ $project->companyMasters->name }}</td>
 							</tr>
