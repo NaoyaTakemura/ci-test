@@ -22,7 +22,7 @@
 							</tr-->
 							<tr>
 								<th>期間</th>
-								<td>@if($data['dateUnfixed'] == 1)
+								<td>@if($data['dateUnfixed'] == 0)
 									{{ $data['start'] }}　～　{{ $data['limit'] }}
 									@else
 									未定
