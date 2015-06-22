@@ -115,6 +115,11 @@ class Task extends Model {
 	 */
 	public function createTask($data)
 	{
+		// 未定の時は日付をnullに
+		if($data['dateUnfixed'] == 1){
+			$data['start'] = null;
+			$data['limit'] = null;
+		}
 		$this->fill(array(
 				'project_id' => $data['project_id'],
 				'title'      => $data['title'],
@@ -136,7 +141,7 @@ class Task extends Model {
 		$task = $this->select('id')
 			->where('project_id', $data['project_id'])
 			->where('title', $data['title'])
-			->where('limit', $data['limit'])
+			//->where('limit', $data['limit'])
 			->get();
 		
 		$ret = null;
@@ -153,6 +158,13 @@ class Task extends Model {
 	public function updateTask($id, $data)
 	{
 		$task = $this->getTask($id);
+		
+		// 未定の時は日付をnullに
+		if($data['dateUnfixed'] == 1){
+			$data['start'] = null;
+			$data['limit'] = null;
+		}
+		
 		$task->fill(array(
 				'project_id' => $data['project_id'],
 				'title'      => $data['title'],
@@ -202,6 +214,8 @@ class Task extends Model {
 			->select('title', 'start', 'limit as end', 'color')
 			->where('tasks.delete_flag', 0)
 			->where('tasks.progress', '<', 100)
+			->where('tasks.start', '<>', 'null')
+			->where('tasks.limit', '<>', 'null')
 			->orderBy('tasks.priority', 'asc')
 			->orderBy('tasks.limit', 'asc')
 			->get();

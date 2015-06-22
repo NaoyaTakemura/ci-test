@@ -4,11 +4,16 @@ $(function () {
 		lang: 'ja',
 		value: dateStrS
 	});
+
 	$("#datepickerE").datetimepicker({
 		format: 'Y-m-d G:i',
 		lang: 'ja',
 		value: dateStrE
 	});
+
+	if((dateStrS == '' && dateStrE == '') || $("#datepickerS").val() == '' || $("#datepickerE").val() == '' ){
+		$("#dateUnfixed").attr("checked", "checked");
+	}
 
 	$.ajaxSetup({
 		headers: {

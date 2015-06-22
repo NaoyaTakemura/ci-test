@@ -38,7 +38,7 @@ class CreateTaskRequest extends Request {
 			'title'=>'required|between:1,100',
 			'text'=>'between:0,3000',
 			'priority'=>'integer|taskPriorityDuplication',
-			'limit'=>'required|date_format:"Y-m-d G:i"',
+			'dateUnfixed'=>'TaskDateInput',
 			'progress'=>'integer|between:0,100',
 		];
 	}

@@ -81,7 +81,8 @@ return [
 	"project_duplication"  =>"既に登録されています。",
 	"company_duplication"  =>"既に登録されています。",
 	"task_priority_duplication"  =>"既に登録されています。",
-	"holder_duplication"  =>"既に登録されています。",
+	"holder_duplication"   =>"既に登録されています。",
+	"task_date_input"      =>"開始日と終了日を正しいフォーマットで入力するか、未定にチェックをしてください。",
 	
 	/*
 	|--------------------------------------------------------------------------

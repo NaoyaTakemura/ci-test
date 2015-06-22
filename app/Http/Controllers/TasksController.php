@@ -105,6 +105,8 @@ class TasksController extends Controller {
 	{
 		// バリデーションエラー時と確認画面から戻る時の入力値保持
 		$tcFormData = $request->old();
+			//	echo "<pre>";
+			//print_r($request->old());exit;
 		if(\Session::has('tcFormData') === true && $request->server('HTTP_REFERER') == route('tasks/createConfirm')){
 			//確認画面から戻った場合 セッションから取得した値をモデルにセットし直す
 			$tcFormData = \Session::get('tcFormData');
@@ -126,7 +128,7 @@ class TasksController extends Controller {
 	public function createConfirm(Requests\CreateTaskRequest $request)
 	{
 		$data = $request->all();
-		
+
 		//初期表示判定
 		if(empty($data)){
 			return $this->_renderCreateInput();
@@ -276,6 +278,12 @@ class TasksController extends Controller {
 		}
 		
 		$data = $task->toArray();
+		
+		//期間表示判定用変数作成
+		$data['dateUnfixed'] = 0;
+		if(is_null($data['start']) || is_null($data['limit'])) $data['dateUnfixed'] = 1;
+		
+		$data['dateUnfixed'] = 0;
 		$this->_setNames($data);
 
 		return view('task.deleteConfirm')->with(compact('data'));

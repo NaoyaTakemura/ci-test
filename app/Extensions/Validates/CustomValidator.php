@@ -97,6 +97,27 @@ class CustomValidator extends \Illuminate\Validation\Validator
 	}
 
 	/**
+	 * 日付入力チェック
+	 */
+	public function validateTaskDateInput($attribute, $value, $parameters)
+	{
+		$start = $this->getValue('start');
+		$limit = $this->getValue('limit');
+		$unfixed = $this->getValue('dateUnfixed');
+
+		if($unfixed == 0){
+			if($this->validateRequired('', $start) === false or
+				$this->validateRequired('', $limit) === false or
+				$this->validateDateFormat('', $start, array("Y-m-d G:i")) === false or
+				$this->validateDateFormat('', $limit, array("Y-m-d G:i")) === false			){
+				return false;
+			} 
+		}
+		
+		return true;
+	}
+	
+	/**
 	 * Model利用手続き
 	 * DBのインスタンス生成がシングルトンになっているので複数回呼んでも大丈夫
      * @param string $connection

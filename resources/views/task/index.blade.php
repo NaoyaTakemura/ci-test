@@ -33,7 +33,12 @@
 									<p id="tooltip{{ $task->id }}" class="toolTip invisible">{!! nl2br(e($task->text)) !!}</p>
 								</td>
 								<td>{{ $task->holders->name }}</td>
-								<td>{{ date('Y/m/d G:i', strtotime($task->limit)) }}</td>
+								<td>@if(is_null($task->limit))
+									未定
+									@else
+									{{ date('Y/m/d G:i', strtotime($task->limit)) }}
+									@endif
+								</td>
 								<td>{!! HTML::linkRoute('tasks/editInput', '編集', [$task->id], ['title'=>'編集']) !!}</td>
 								<td>{!! HTML::linkRoute('tasks/deleteConfirm', '削除', [$task->id], ['title'=>'削除']) !!}</td>
 							</tr>

@@ -22,7 +22,7 @@
 							</tr-->
 							<tr>
 								<th>期間</th>
-								<td>{!! $errors->first('limit', '<p class="text-danger">:message</p>') !!}<input type='text' id="datepickerS" name='start' value='' />　～　<input type='text' id="datepickerE" name='limit' value='' /></td>
+								<td>{!! $errors->first('dateUnfixed', '<p class="text-danger">:message</p>') !!}<input type='text' id="datepickerS" name='start' value='' />　～　<input type='text' id="datepickerE" name='limit' value='' />&emsp;未定&nbsp;<input type="hidden" name="dateUnfixed" value="0"><input id='dateUnfixed' type='checkbox' name='dateUnfixed' value='1' /></td>
 							</tr>
 							<tr>
 								<th>進捗</th>
